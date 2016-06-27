@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script language="javascript" src="js/jquery-1.12.3.js"></script>
+</head>
+
+<body>
+<form method="post" action="grabar_reserva.php">
+<table width="800" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="400" height="40">
+      	Origen: 
+        <select name="lstOrigen" id="lstOrigen"></select>
+      </td>
+      <td width="400">
+        Destino: 
+        <select name="lstDestino" id="lstDestino"></select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      
+        <table width="800" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="250" valign="top"><div id="div_programacion"></div></td>
+              <td width="300"><div id="div_croquis"></div></td>
+              <td width="250"><div id="div_reserva"></div></td>
+            </tr>
+        </table>
+        
+      </td>
+    </tr>
+</table>
+</form>
+</body>
+</html>
+<script>
+
+$(document).ready(LeerOrigen);
+$("#lstOrigen").change(LeerDestino);
+$("#lstDestino").change(VerProgramacion);
+
+function LeerOrigen(){
+	$.ajax({
+		data:  {},
+		url:   'lista_origen.php',
+		type:  'post',
+		success:  function (respuesta) {
+			$("#lstOrigen").html(respuesta);
+		}
+	});
+}
+
+function LeerDestino(){
+	origen = $("#lstOrigen").val();
+	$.ajax({
+		data:  {'origen':origen},
+		url:   'lista_destino.php',
+		type:  'post',
+		success:  function (respuesta) {
+			$("#lstDestino").html(respuesta);
+		}
+	});
+}
+
+function VerProgramacion(){
+	origen = $("#lstOrigen").val();
+	destino = $("#lstDestino").val();
+	$.ajax({
+		data:  {'origen':origen, 'destino':destino},
+		url:   'lista_programacion.php',
+		type:  'post',
+		success:  function (respuesta) {
+			$("#div_programacion").html(respuesta);
+		}
+	});
+}
+</script>	

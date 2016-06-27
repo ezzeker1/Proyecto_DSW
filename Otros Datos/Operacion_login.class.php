@@ -23,12 +23,12 @@ public function validar($p_user,$p_pass){
 	while($row = mysql_fetch_assoc($rs)){
    $contador++;
  if ($p_pass == $row['usu_pass']){
- 	$this-> respuesta = "Procede....";
+ 	$this-> respuesta = 0;
  }
- else  $this-> respuesta = "Contrasenia Incorrecta.";
+ else  $this-> respuesta = 1;
 	}
 	if ($contador == 0){
-$this-> respuesta = "Usuario no existe";
+$this-> respuesta = 2;
 	}
 
 }
