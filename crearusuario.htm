@@ -1,0 +1,105 @@
+<html>
+<head>
+	<title>Crear Usuario</title>
+<meta charset="utf-8">
+
+	<script language="javascript" src="js/jquery-1.12.3.js"></script>
+	<script rel="stylesheet" href="css/hover.css"></script>
+<style>
+p{
+	margin: 0;
+	float: left;
+	width: 100;
+	height: 20;
+	padding: 0;
+	color: green;
+	font-style: bold;
+}
+h1{
+	color: blue;
+}
+#bcrear{
+	border-radius: 64px 64px 64px 64px;
+	-moz-border-radius: 64px 64px 64px 64px;
+	-webkit-border-radius: 64px 64px 64px 64px;
+	border: 0px solid #000000;
+ 	border: none;
+  	padding: 9px 18px;
+   	text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+ 	background-color: #4CAF50; /* Green */
+	-webkit-box-shadow: 14px 10px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 14px 10px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 14px 10px 5px 0px rgba(0,0,0,0.75);
+}
+body{
+	background-image: url("http://sbt.smartbettracker.com/assets/user_add-ee77f7b2fd74c562d23009a510dd659eaf3ba6396ad6700394c4b40551ba7e8d.png");
+}
+</style>
+</head>
+<body>
+<h1>Crear Usuario</h1>
+
+<form>
+	<p>
+		<b>
+			Login:
+		</b>
+	</p> 
+	<input type="text" name="idlogin" id="idlogin"><br>
+	<p>
+		<b>
+			pass:
+		</b>
+	</p> 
+	<input type="password" name="pass" id="pass"><br>
+	<p>
+		<b>
+			Nombre:
+		</b>
+	</p> 
+	<input type="text" name="nombre" id="nombre"><br>
+	<p>
+		<b>
+			Apellido P.:
+		</b>
+	</p> 
+	<input type="text" name="apellidop" id="apellidop"><br>
+	<p>
+		<b>
+			Apellido M.:
+		</b>
+	</p> 
+	<input type="text" name="apellidom" id="apellidom"><br><br>
+	<input type="button" name="Crear" value="Crear Usuario" id="bcrear"><br>
+</form>
+</body>
+</html>
+<script>
+$("#bcrear").click(GuardarUsuario);
+
+
+function GuardarUsuario(){
+usu_id = $("#idlogin").val();
+usu_pass = $("#pass").val();
+usu_nombre = $("#nombre").val();
+usu_apellidop = $("#apellidop").val();
+usu_apellidom = $("#apellidom").val();
+
+	$.ajax({
+		data:  {'usu_id':usuid, 
+		        'usu_pass':usupadd, 
+		        'usu_nombre':usunom,
+		        'usu_apellidop':usuapep,
+		        'usu_apellidom':usuapem},
+		url:   'grabar_usuario.php',
+		type:  'post',
+		success:  function (respuesta) {
+			$("#div_programacion").html(respuesta);
+		}
+	});
+}
+
+</script>

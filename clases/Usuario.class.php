@@ -24,21 +24,11 @@ class Usuario{
 		}
 	}
 
-	public function InsertarID($login,$login,$pass,$apelliop,$apellidom){
+		public function ListarUsuarios(){
 		try{
-			$sql = "Insert into usuario values($login,$login,$pass,$apelliop,$apellidom)";
-			$registro = AccesoBD::Insertar($sql, $this->cn);
-			return $registro[0];
-		}catch(Exception $e){
-			throw $e;
-		}
-	}
-
-	public function EliminarID($id){
-		try{
-			$sql = "delete from usuario where usu_id = $id)";
-			$registro = AccesoBD::OtroSQL($sql, $this->cn);
-			
+			$sql = "select * from usuario";
+			$lista = AccesoBD::Consultar($sql, $this->cn);
+			return $lista;
 		}catch(Exception $e){
 			throw $e;
 		}

@@ -1,0 +1,62 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Mantenimiento de Usuarios</title>
+	<script language="javascript" src="js/jquery-1.12.3.js"></script>
+	<script rel="stylesheet" href="css/hover.css"></script>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+<h1>Mantenimiento de Usuarios</h1>
+<br>
+<table>
+	<tr>
+		<td>
+			<input id="crear" type="button" name="crear" value="Crear Usuario" onclick="IraCrear()">
+		</td>
+		<td>
+			<input id="modificar" type="button" name="Modificar" value="Modificar Usuarios"  onclick="IraModificar()">
+		</td>
+		<td>
+			<input id="eliminar" type="button" name="eliminar" value="Eliminar Usuario"  onclick="IraEliminar()">
+		</td>
+	</tr>
+</table>
+<br>
+<p>Lista de Usuarios del sistema</p>
+<div id="div_listau"></div>
+
+</body>
+</html>
+<script>
+$(document).ready(VerUsuarios);
+
+function VerUsuarios(){
+	$.ajax({
+		data:  {},
+		url:   'lista_usuarios.php',
+		type:  'post',
+		success:  function (respuesta) {
+			$("#div_listau").html(respuesta);
+		}
+	});
+}
+
+function IraCrear(){
+     window.location.assign("crearusuario.htm")
+}
+function IraEliminar(){
+     window.location.assign("eliminarusuario.htm")
+}
+function IraModificar(){
+     window.location.assign("modificarusuario.htm")
+}
+</script>
